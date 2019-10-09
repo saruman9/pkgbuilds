@@ -1,0 +1,71 @@
+# Maintainer: Jean Lucas <jean@4ray.co>
+# Contributor: Danny Bautista <pyrolagus@gmail.com>
+# Contributor: Alex Sarum <rum.274.4 at gmail dot com>
+
+pkgname='ghidra-git'
+pkgver=9.0.4+r1250+g04f7366a
+pkgrel=1
+pkgdesc="Software reverse engineering framework (git)"
+arch=('x86_64')
+url='https://www.nsa.gov/ghidra'
+license=('Apache')
+provides=('ghidra')
+conflicts=('ghidra' 'ghidra-bin')
+depends=('java-environment>=11' 'hicolor-icon-theme')
+makedepends=('git' 'gradle' 'unzip')
+source=("$pkgname::git+https://github.com/NationalSecurityAgency/ghidra"
+        "git+https://github.com/0x6d696368/ghidra-data"
+        ghidra.desktop)
+sha512sums=('SKIP'
+            'SKIP'
+            'a85b8b3276e2ff4ed8bda6470c15d02711ebaa48463c775cd2a36549fad738e9fe073dab80f8c57646490ffc959cdc27e9d25b1dc2a5810b0ddb249b5dc99a9b')
+
+pkgver() {
+  cd $srcdir/$pkgname
+  git describe --tags | sed 's#Ghidra_##;s#_build##;s#-#+#g;s#+#+r#'
+}
+
+prepare() {
+  cd $srcdir/$pkgname
+
+  gradle --init-script gradle/support/fetchDependencies.gradle init
+}
+
+build() {
+  cd $srcdir/$pkgname
+
+  gradle buildGhidra
+}
+
+package() {
+  cd $srcdir/$pkgname
+
+  install -d $pkgdir/{opt,usr/bin}
+
+  # Extract built archive into destination folder
+  _appver=$(grep -oP '(?<=^application.version=).*$' Ghidra/application.properties)
+  _relname=$(grep -oP '(?<=^application.release.name=).*$' Ghidra/application.properties)
+  unzip -u build/dist/ghidra_${_appver}_${_relname}_$(date +"%Y%m%d")_linux64.zip -d $pkgdir/opt
+  # Use a simple directory name
+  mv $pkgdir/opt/ghidra{_${_appver}_${_relname},}
+
+  # Add FID datasets
+  install -Dm 644 $srcdir/${pkgname%-git}-data/FunctionID/*.fidb -t $pkgdir/opt/ghidra/Ghidra/Features/FunctionID/data/
+
+  # Add GDT
+  install -Dm 644 $srcdir/${pkgname%-git}-data/typeinfo/*.gdt -t $pkgdir/opt/ghidra/Ghidra/Features/Base/data/typeinfo/custom/
+
+  # Create custom username
+  sed -i '0,/VMARGS/!b;//a\\n# Username\nVMARGS=-Duser.name='"$USER"'' $pkgdir/opt/${pkgname%-git}/support/launch.properties
+
+  ln -s /opt/ghidra/ghidraRun $pkgdir/usr/bin/ghidra
+  ln -s /opt/ghidra/support/analyzeHeadless $pkgdir/usr/bin/ghidra-analyzeHeadless
+
+  install -Dm 644 ../../ghidra.desktop -t $pkgdir/usr/share/applications
+  for i in 16 24 32 40 48 64 128 256; do
+    install -Dm 644 Ghidra/Framework/Generic/src/main/resources/images/GhidraIcon$i.png \
+      $pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/ghidra.png
+  done
+
+  install -Dm 644 LICENSE -t $pkgdir/usr/share/licenses/ghidra
+}
