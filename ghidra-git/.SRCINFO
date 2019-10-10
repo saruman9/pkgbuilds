@@ -10,7 +10,7 @@ pkgbase = ghidra-git
 	makedepends = unzip
 	depends = java-environment>=11
 	depends = hicolor-icon-theme
-	provides = ghidra
+	optdepends = python2: for the Python scripting feature
 	conflicts = ghidra
 	conflicts = ghidra-bin
 	source = ghidra-git::git+https://github.com/NationalSecurityAgency/ghidra
