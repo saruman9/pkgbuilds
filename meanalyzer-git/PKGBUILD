@@ -2,7 +2,7 @@
 # Contributor: Gavin Lloyd <gavinhungry@gmail.com>
 
 pkgname=meanalyzer-git
-pkgver=r179.r0.g92f1b13
+pkgver=1.98.0.r180.r0.g976e9f6
 pkgrel=1
 pkgdesc='Intel Management Engine firmware analysis tool'
 arch=('any')
