@@ -4,7 +4,7 @@
 
 _pkgname='ghidra'
 pkgname=${_pkgname}-git
-pkgver=9.0.4+r1250+g04f7366a
+pkgver=9.0.4+r1372+g30516012
 pkgrel=1
 pkgdesc="Software reverse engineering framework (git)"
 arch=('x86_64')
@@ -29,6 +29,8 @@ pkgver() {
 
 prepare() {
   cd $srcdir/$pkgname
+
+  sed -Ei 's/(application\.version=).*$/\10.1/;s/(application\.release\.name=).*$/\1GIT/' Ghidra/application.properties
 
   gradle --init-script gradle/support/fetchDependencies.gradle init
 }
