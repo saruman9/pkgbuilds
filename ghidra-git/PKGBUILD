@@ -4,7 +4,7 @@
 
 _pkgname='ghidra'
 pkgname=${_pkgname}-git
-pkgver=9.0.4+r1372+g30516012
+pkgver=9.1+r151+g6bac1a87
 pkgrel=1
 pkgdesc="Software reverse engineering framework (git)"
 arch=('x86_64')
@@ -15,7 +15,7 @@ conflicts=('ghidra' 'ghidra-bin')
 depends=('java-environment>=11' 'hicolor-icon-theme')
 makedepends=('git' 'gradle' 'unzip')
 optdepends=('python2: for the Python scripting feature')
-source=("$pkgname::git+https://github.com/NationalSecurityAgency/ghidra"
+source=("$pkgname::git+https://gitlab.com/saruman9/ghidra#branch=master"
         "git+https://github.com/0x6d696368/ghidra-data"
         ghidra.desktop)
 sha512sums=('SKIP'
