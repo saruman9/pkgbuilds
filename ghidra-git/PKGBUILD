@@ -4,7 +4,7 @@
 
 _pkgname='ghidra'
 pkgname=${_pkgname}-git
-pkgver=9.1+r151+g6bac1a87
+pkgver=9.1.1+r543+gbc54a71c
 pkgrel=1
 pkgdesc="Software reverse engineering framework (git)"
 arch=('x86_64')
@@ -39,6 +39,7 @@ build() {
   cd $srcdir/$pkgname
 
   gradle buildGhidra
+  gradle sleighCompile
 }
 
 package() {
