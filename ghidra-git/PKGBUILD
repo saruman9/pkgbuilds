@@ -4,13 +4,13 @@
 
 _pkgname='ghidra'
 pkgname=${_pkgname}-git
-pkgver=9.1+r151+g6bac1a87
+pkgver=9.1.1+r603+g7302b09a
 pkgrel=1
 pkgdesc="Software reverse engineering framework (git)"
 arch=('x86_64')
 url='https://www.nsa.gov/ghidra'
 license=('Apache')
-provides=()
+provides=('ghidra')
 conflicts=('ghidra' 'ghidra-bin')
 depends=('java-environment>=11' 'hicolor-icon-theme')
 makedepends=('git' 'gradle' 'unzip')
