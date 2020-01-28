@@ -17,8 +17,10 @@ makedepends=('git' 'gradle' 'unzip')
 optdepends=('python2: for the Python scripting feature')
 source=("$pkgname::git+https://gitlab.com/saruman9/ghidra#branch=dev"
         "git+https://github.com/0x6d696368/ghidra-data"
+        "git+https://github.com/threatrack/ghidra-fidb-repo"
         ghidra.desktop)
 sha512sums=('SKIP'
+            'SKIP'
             'SKIP'
             'a85b8b3276e2ff4ed8bda6470c15d02711ebaa48463c775cd2a36549fad738e9fe073dab80f8c57646490ffc959cdc27e9d25b1dc2a5810b0ddb249b5dc99a9b')
 
@@ -55,6 +57,7 @@ package() {
 
   # Add FID datasets
   install -Dm 644 $srcdir/${_pkgname}-data/FunctionID/*.fidb -t $pkgdir/opt/${_pkgname}/Ghidra/Features/FunctionID/data/
+  install -Dm 644 $srcdir/${_pkgname}-fidb-repo/*.fidb -t $pkgdir/opt/${_pkgname}/Ghidra/Features/FunctionID/data
 
   # Add GDT
   install -Dm 644 $srcdir/${_pkgname}-data/typeinfo/*.gdt -t $pkgdir/opt/${_pkgname}/Ghidra/Features/Base/data/typeinfo/custom/
