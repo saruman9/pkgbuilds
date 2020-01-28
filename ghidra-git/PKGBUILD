@@ -1,6 +1,4 @@
-# Maintainer: Jean Lucas <jean@4ray.co>
-# Contributor: Danny Bautista <pyrolagus@gmail.com>
-# Contributor: Alex Sarum <rum.274.4 at gmail dot com>
+# Maintainer: Alex Sarum <rum.274.4 at gmail dot com>
 
 _pkgname='ghidra'
 pkgname=${_pkgname}-git
