@@ -2,11 +2,11 @@
 
 _pkgname=gotools
 pkgname=ghidra-extension-$(echo $_pkgname | tr '[:upper:]' '[:lower:]')-git
-pkgver=v0.1.2
+pkgver=0.1.2.r0.g8b0c484
 pkgrel=1
 pkgdesc="Plugin for Ghidra to assist reversing Golang binaries"
 arch=('x86_64')
-url=https://github.com/felberj/{_pkgname}
+url=https://github.com/felberj/${_pkgname}
 license=('MIT')
 provides=()
 conflicts=()
@@ -22,7 +22,7 @@ prepare() {
 
 pkgver() {
   cd $srcdir/${_pkgname}
-  git describe --tags | sed 's#-#+#g;s#+#+r#'
+  git describe --tags --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
