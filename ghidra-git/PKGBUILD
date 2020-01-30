@@ -2,7 +2,7 @@
 
 _pkgname='ghidra'
 pkgname=${_pkgname}-git
-pkgver=9.1.1+r603+g7302b09a
+pkgver=9.1.1.r620.g2b07f9c1
 pkgrel=1
 pkgdesc="Software reverse engineering framework (git)"
 arch=('x86_64')
@@ -24,7 +24,7 @@ sha512sums=('SKIP'
 
 pkgver() {
   cd $srcdir/$pkgname
-  git describe --tags | sed 's#Ghidra_##;s#_build##;s#-#+#g;s#+#+r#'
+  git describe --tags --long | sed 's/_build//;s/Ghidra_//;s/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
