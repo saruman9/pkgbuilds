@@ -1,9 +1,9 @@
-# Maintainer: Bailey Fox <bfox200012@gmail.com>
+# Maintainer: Alex Sarum <rum.274.4 at gmail dot com>
 # Contributor: Gavin Lloyd <gavinhungry@gmail.com>
-# Contributor: Alex Sarum <rum.274.4 at gmail dot com>
+# Contributor: Bailey Fox <bfox200012@gmail.com>
 
 pkgname=meanalyzer-git
-pkgver=1.98.0.r180.r0.g976e9f6
+pkgver=1.123.0.r194.r0.g68742e1
 pkgrel=1
 pkgdesc='Intel Management Engine firmware analysis tool'
 arch=('any')
