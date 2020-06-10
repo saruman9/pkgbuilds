@@ -2,7 +2,7 @@
 # Contributor: Anatol Pomozov <anatol.pomozov@gmail.com>
 
 pkgname=uefi-firmware-parser-git
-pkgver=1.8.r8.g4098ce0
+pkgver=1.8.r13.ga82d386
 pkgrel=1
 pkgdesc='Parse BIOS/Intel ME/UEFI firmware related structures: Volumes, FileSystems, Files, etc'
 arch=('any')
