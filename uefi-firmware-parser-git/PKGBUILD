@@ -2,17 +2,17 @@
 # Contributor: Anatol Pomozov <anatol.pomozov@gmail.com>
 
 pkgname=uefi-firmware-parser-git
-pkgver=1.8.r13.ga82d386
+pkgver=1.8.r13.gec6f7e9
 pkgrel=1
 pkgdesc='Parse BIOS/Intel ME/UEFI firmware related structures: Volumes, FileSystems, Files, etc'
 arch=('any')
 license=(MIT)
-url='https://gitlab.com/saruman9/uefi-firmware-parser'
+url='https://github.com/saruman9/uefi-firmware-parser'
 depends=(python)
 provides=('uefi-firmware-parser')
 conflicts=('uefi-firmware-parser')
 makedepends=(python-setuptools)
-source=(${pkgname}::git+${url})
+source=(${pkgname}::git+${url}#branch=dev)
 sha256sums=('SKIP')
 
 pkgver() {
