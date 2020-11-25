@@ -2,7 +2,7 @@
 
 _pkgname='ghidra'
 pkgname=${_pkgname}-git
-pkgver=9.1.2.r1063.g413fa1ca5
+pkgver=9.2.r150.gfde10249e
 pkgrel=1
 pkgdesc="Software reverse engineering framework (git)"
 arch=('x86_64')
