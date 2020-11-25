@@ -30,8 +30,6 @@ pkgver() {
 prepare() {
   cd $srcdir/$pkgname
 
-  sed -Ei 's/(application\.version=).*$/\10.1/;s/(application\.release\.name=).*$/\1GIT/' Ghidra/application.properties
-
   gradle --init-script gradle/support/fetchDependencies.gradle init
 }
 
